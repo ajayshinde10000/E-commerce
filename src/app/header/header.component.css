@@ -1,0 +1,17 @@
+ul{
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+}
+.navbar{
+    padding-top: 0px;
+}
+
+.navbar ul li{
+    cursor: pointer;
+    font-size: 18px;
+}
+.container-fluid{
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+    padding: 10px;
+}

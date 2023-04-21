@@ -1,0 +1,29 @@
+.center{
+    width: 420px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    position: relative;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%,-50px);
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+label{
+    font-size: 16px;
+}
+span{
+    cursor: pointer;
+}
+@media screen and (max-width: 500px) {
+    .center{
+        width: 90vw;
+        border: 1px solid rgb(0, 0, 0);
+        position: relative;
+        left: 50%;
+        top: 100px;
+        transform: translate(-50%,-50px);
+        padding: 30px;
+        border-radius: 10px;
+    }
+}

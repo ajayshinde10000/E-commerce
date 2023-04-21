@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="center">
+        <p class="fw-bold fs-3 mb-4 text-center">Register</p>
+        <form #registrationForm="ngForm" (ngSubmit)="register(registrationForm)">
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Name:</label>
+                <input type="text" class="form-control" #name="ngModel" name="name" ngModel required>
+                <p *ngIf="name.invalid && name.touched || !isValidName" class="text-danger">Enter Valid Name</p>
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Company Name:</label>
+                <input type="text" class="form-control" #companyName="ngModel" name="companyName" ngModel required>
+                <p *ngIf="companyName.invalid && companyName.touched" class="text-danger">Enter Valid Name</p>
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Email:</label>
+                <input type="text" class="form-control" #email="ngModel" name="email" ngModel email required>
+                <p *ngIf="email.invalid && email.touched" class="text-danger">Enter Valid Email Address</p>
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Password:</label>
+                <input type="password" class="form-control" #password="ngModel" name="password" ngModel minlength="8" required>
+                <p *ngIf="password.invalid && password.touched || password.errors?.['minlength']" class="text-danger">Enter Valid Password. Password Required minimum 8 Characters</p>
+            </div>
+
+            <div class="mb-3">
+                <form>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Select Role</mat-label>
+                      <mat-select [(ngModel)]="selectedValue" name="food">
+                        <mat-option *ngFor="let r of role" [value]="r.value">
+                          {{r.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </form>
+                  
+            </div>
+
+            <button class="btn btn-primary w-100 mb-3">Register</button>
+            <div class="mb-3 text-center fs-6">
+                Already Have An Account? <a (click)="goToLogin()"><span class="text-primary"> Login</span></a>
+            </div>
+           
+        </form>
+    </div>
+</div>

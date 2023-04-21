@@ -1,0 +1,38 @@
+.logoutBtn{
+    position: absolute;
+    right: 5%;
+}
+
+.card{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    width: 500px;
+    position: relative;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%,-20%);
+}
+
+.profileImg{
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+}
+.card-body p{
+    font-size: 18px;
+    padding: 5px 10px;
+}
+
+.card-body span{
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 767px) {
+    .card{
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        width: 98vw;
+        position: relative;
+        top: 100px;
+        left: 50%;
+        transform: translate(-50%,-20%);
+    }
+}
