@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   isLogin:boolean = false;
 
   logout(){
+   this.userService.user.isLogin = false;
     this.userService.userLoginTrue.next(false);
     let arr = localStorage.getItem('users') || '[]';
     let userArr = JSON.parse(arr);

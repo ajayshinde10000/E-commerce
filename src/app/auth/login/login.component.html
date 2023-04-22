@@ -1,24 +1,52 @@
 <div class="container">
-    <div class="center">
-        <p class="fw-bold fs-3 mb-4 pb-2 text-center">Login</p>
-        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
-            <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Email:</label>
-                <input type="text" class="form-control" #email="ngModel" name="email" ngModel email required>
-                <p *ngIf="email.invalid && email.touched" class="text-danger">Enter Valid Email Address</p>
-            </div>
-            <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Password:</label>
-                <input type="password" class="form-control" #password="ngModel" name="password" ngModel required>
-                <p *ngIf="password.invalid && password.touched" class="text-danger">Enter Valid Password.</p>
-                <span class="forgetPass" (click)="forgetPass()">Forget Password?</span>
-            </div>
-           
-            <button class="btn btn-primary w-100 mb-3">Login</button>
-            <div class="mb-3 text-center fs-6">
-                Don't Have An Account? <a (click)="goToRegister()"> <span class="text-primary">Register</span></a>
-            </div>
-           
-        </form>
-    </div>
+  <div class="center">
+    <p class="fw-bold fs-3 mb-4 pb-2 text-center">Login</p>
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Email:</label>
+        <input
+          type="text"
+          class="form-control"
+          #email="ngModel"
+          name="email"
+          ngModel
+          email
+          required
+        />
+        <p *ngIf="email.invalid && email.touched" class="text-danger">
+          Enter Valid Email Address
+        </p>
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Password:</label>
+
+        <div class="pass">
+            <img *ngIf="passVisible==='text'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/hide.png"/>
+            <img *ngIf="passVisible==='password'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/visible--v1.png"/>
+
+            <input
+              type="{{passVisible}}"
+              class="form-control"
+              #password="ngModel"
+              name="password"
+              ngModel
+              required
+            />
+        </div>
+       
+        <p *ngIf="password.invalid && password.touched" class="text-danger">
+          Enter Valid Password.
+        </p>
+        <span class="forgetPass" (click)="forgetPass()">Forget Password?</span>
+      </div>
+
+      <button class="btn btn-primary w-100 mb-3">Login</button>
+      <div class="mb-3 text-center fs-6">
+        Don't Have An Account?
+        <a (click)="goToRegister()">
+          <span class="text-primary">Register</span></a
+        >
+      </div>
+    </form>
+  </div>
 </div>

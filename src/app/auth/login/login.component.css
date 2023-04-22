@@ -32,6 +32,22 @@ span{
     float: right;
     cursor: pointer;
 }
+.pass{
+    position: relative;
+}
+
+.pass input{
+    position: absolute;
+}
+
+.pass img{
+    z-index: 2;
+    cursor: pointer;
+    position: absolute;
+    top:7px;
+    right: 15px;
+    width: 25px;
+}
 @media screen and (max-width: 500px) {
     .center{
         width: 90vw;

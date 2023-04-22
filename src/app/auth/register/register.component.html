@@ -17,13 +17,29 @@
                 <input type="text" class="form-control" #email="ngModel" name="email" ngModel email required>
                 <p *ngIf="email.invalid && email.touched" class="text-danger">Enter Valid Email Address</p>
             </div>
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="formGroupExampleInput2" class="form-label">Password:</label>
-                <input type="password" class="form-control" #password="ngModel" name="password" ngModel minlength="8" required>
+
+
+                <div class="pass">
+                    <img *ngIf="passVisible==='text'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/hide.png"/>
+                    <img *ngIf="passVisible==='password'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/visible--v1.png"/>
+        
+                    <input
+                      type="{{passVisible}}"
+                      class="form-control"
+                      #password="ngModel"
+                      name="password"
+                      ngModel
+                      required
+                    />
+                </div>
+
+                <!-- <input type="password" class="form-control" #password="ngModel" name="password" ngModel minlength="8" required> -->
                 <p *ngIf="password.invalid && password.touched || password.errors?.['minlength']" class="text-danger">Enter Valid Password. Password Required minimum 8 Characters</p>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 role">
                 <form>
                     <mat-form-field appearance="fill">
                       <mat-label>Select Role</mat-label>

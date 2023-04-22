@@ -46,4 +46,15 @@ export class LoginComponent implements OnInit {
   forgetPass(){
     alert('Forget Password Works');
   }
+
+  passVisible:string = 'password';
+
+  toggleImg(){
+    if(this.passVisible=='password'){
+      this.passVisible = 'text'
+    }
+    else{
+      this.passVisible = 'password'
+    }
+  }
 }

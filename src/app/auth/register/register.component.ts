@@ -95,4 +95,15 @@ export class RegisterComponent implements OnInit {
   goToLogin(){
       this.router.navigate(['auth/login']);
   }
+
+  passVisible:string = 'password';
+
+  toggleImg(){
+    if(this.passVisible=='password'){
+      this.passVisible = 'text'
+    }
+    else{
+      this.passVisible = 'password'
+    }
+  }
 }
