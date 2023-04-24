@@ -3,27 +3,25 @@
         <p class="fw-bold fs-3 mb-4 text-center">Register</p>
         <form #registrationForm="ngForm" (ngSubmit)="register(registrationForm)">
             <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Name:</label>
-                <input type="text" class="form-control" #name="ngModel" name="name" ngModel required>
+                <label for="formGroupExampleInput" class="form-label">Name</label>
+                <input [ngClass]="name.invalid && name.touched ? {'myClass' : true}:''" type="text" class="form-control" #name="ngModel" name="name" ngModel required>
                 <p *ngIf="name.invalid && name.touched || !isValidName" class="text-danger">Enter Valid Name</p>
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Company Name:</label>
+                <label for="formGroupExampleInput2" class="form-label">Company Name</label>
                 <input type="text" class="form-control" #companyName="ngModel" name="companyName" ngModel required>
-                <p *ngIf="companyName.invalid && companyName.touched" class="text-danger">Enter Valid Name</p>
+                <p *ngIf="companyName.invalid && companyName.touched" class="text-danger">Enter Valid Comapny Name</p>
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Email:</label>
+                <label for="formGroupExampleInput" class="form-label">Email</label>
                 <input type="text" class="form-control" #email="ngModel" name="email" ngModel email required>
                 <p *ngIf="email.invalid && email.touched" class="text-danger">Enter Valid Email Address</p>
             </div>
             <div class="mb-5">
-                <label for="formGroupExampleInput2" class="form-label">Password:</label>
-
-
+                <label for="formGroupExampleInput2" class="form-label">Password</label>
                 <div class="pass">
-                    <img *ngIf="passVisible==='text'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/hide.png"/>
-                    <img *ngIf="passVisible==='password'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/visible--v1.png"/>
+                    <img *ngIf="passVisible==='password'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/hide.png"/>
+                    <img *ngIf="passVisible==='text'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/visible--v1.png"/>
         
                     <input
                       type="{{passVisible}}"
@@ -34,9 +32,8 @@
                       required
                     />
                 </div>
-
                 <!-- <input type="password" class="form-control" #password="ngModel" name="password" ngModel minlength="8" required> -->
-                <p *ngIf="password.invalid && password.touched || password.errors?.['minlength']" class="text-danger">Enter Valid Password. Password Required minimum 8 Characters</p>
+                <p *ngIf="password.invalid && password.touched || password.errors?.['minlength']" class="text-danger forgetPassPara">Enter Valid Password. Password Required minimum 8 Characters</p>
             </div>
 
             <div class="mb-3 role">

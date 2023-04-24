@@ -2,7 +2,7 @@
 
 <div class="container" *ngIf="!isEdit">
     <div class="card p-3">
-        <div class="card-header fs-6">
+        <div class="card-header fs-5 fw-bold">
           Profile
         </div>
         <div class="card-body p-3">
@@ -16,7 +16,6 @@
                 <label for="formGroupExampleInput2" class="form-label">Email</label>
                 <input type="text" class="form-control" [(ngModel)]="email" [disabled]="true">
             </div>
-
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Company Name</label>
                 <input type="text" class="form-control" [(ngModel)]="companyName" [disabled]="isEdit">
@@ -26,7 +25,6 @@
                 <input type="text" class="form-control" [(ngModel)]="role" [disabled]="isEdit">
                 <span class="text-danger" *ngIf="!isRoleValid">Role Must Be Either 'user' or 'Admin'</span>
             </div>
-          
             <a class="btn btn-primary" (click)="editProfile()">Save Changes</a>
             <a class="btn btn-primary ms-3" (click)="cancelEditProfile()">Cancel</a>
         </div>
@@ -37,13 +35,13 @@
     <div class="card">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvc_M0Jo569OkceaKbg_bobTRQGfzXwYEWYgVi8DTwiw&s" class="img-fluid profileImg" alt="">
         <div class="card-body border-top">
-
+        <p class="fs-5 fw-bold">Profile :-</p>
         <p>Name: <span>{{name}}</span></p>
         <p>Email: <span>{{email}}</span></p>
         <p>Company Name: <span>{{companyName}}</span></p>
         <p>Role: <span>{{role}}</span></p>
 
-         <a class="btn btn-primary" (click)="edit()">Edit Profile</a>
+         <a class="btn btn-primary ms-2" (click)="edit()">Edit Profile</a>
         </div>
       </div>
 </div>

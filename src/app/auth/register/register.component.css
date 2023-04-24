@@ -33,6 +33,15 @@ span{
     width: 25px;
 }
 
+.forgetPassPara{
+    position: relative;
+    top: 45px;
+}
+
+.myClass{
+    border: 1px solid red;
+}
+
 @media screen and (max-width: 500px) {
     .center{
         width: 90vw;

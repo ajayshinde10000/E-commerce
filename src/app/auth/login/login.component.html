@@ -5,6 +5,7 @@
       <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">Email:</label>
         <input
+          [ngStyle]="{'border': email.invalid && email.touched ? '1px solid red':''}"
           type="text"
           class="form-control"
           #email="ngModel"
@@ -21,10 +22,11 @@
         <label for="formGroupExampleInput2" class="form-label">Password:</label>
 
         <div class="pass">
-            <img *ngIf="passVisible==='text'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/hide.png"/>
-            <img *ngIf="passVisible==='password'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/visible--v1.png"/>
+            <img *ngIf="passVisible==='password'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/hide.png"/>
+            <img *ngIf="passVisible==='text'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/visible--v1.png"/>
 
             <input
+              [ngStyle]="{'border': password.invalid && password.touched ? '1px solid red':''}"
               type="{{passVisible}}"
               class="form-control"
               #password="ngModel"
@@ -34,7 +36,7 @@
             />
         </div>
        
-        <p *ngIf="password.invalid && password.touched" class="text-danger">
+        <p *ngIf="password.invalid && password.touched" class="text-danger validPass">
           Enter Valid Password.
         </p>
         <span class="forgetPass" (click)="forgetPass()">Forget Password?</span>

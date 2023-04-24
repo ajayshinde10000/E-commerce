@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './Services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -24,5 +25,4 @@ export class AppComponent implements OnInit {
    this.router.navigate(['auth/login']);
   }
   title = 'E-Commerce';
-
 }
