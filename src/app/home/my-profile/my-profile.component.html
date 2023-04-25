@@ -32,16 +32,54 @@
 </div>
 
 <div class="container" *ngIf="isEdit">
-    <div class="card">
+    <div class="card p-4">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvc_M0Jo569OkceaKbg_bobTRQGfzXwYEWYgVi8DTwiw&s" class="img-fluid profileImg" alt="">
-        <div class="card-body border-top">
+        <div class="card-body border-top" *ngIf="!isLoadingData">
         <p class="fs-5 fw-bold">Profile :-</p>
-        <p>Name: <span>{{name}}</span></p>
-        <p>Email: <span>{{email}}</span></p>
-        <p>Company Name: <span>{{companyName}}</span></p>
-        <p>Role: <span>{{role}}</span></p>
 
+        <div class="d-flex">
+            <div class="left"><p>Name:</p></div>
+            <div class="right"><p>{{user.name}}</p></div>
+        </div>
+
+        <div class="d-flex">
+            <div class="left"><p>Email:</p></div>
+            <div class="right"><p>{{user.email}}</p></div>
+        </div>
+
+
+        <div class="d-flex">
+            <div class="left"><p>Email Verified:</p></div>
+            <div class="right"><p>{{user.isEmailVerified}}</p></div>
+        </div>
+
+        <div class="d-flex">
+            <div class="left"><p>Company Name:</p></div>
+            <div class="right"><p>{{user._org.name}}</p></div>
+        </div>
+
+        <div class="d-flex">
+            <div class="left"><p>Role:</p></div>
+            <div class="right"><p>{{user.role}}</p></div>
+        </div>
+
+        <!-- <p>Name: <span>{{user.name}}</span></p>
+        <p>Email: <span>{{user.email}}</span></p>
+        <p>Company Name: <span>{{user._org.name}}</span></p>
+        <p>Role: <span>{{user.role}}</span></p> -->
          <a class="btn btn-primary ms-2" (click)="edit()">Edit Profile</a>
         </div>
+
+        <div *ngIf="isLoadingData" class="load">
+            <div class="d-flex justify-content-start mt-5 ms-3">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div> <p class="fs-4 mt-1 ms-3">Loading Data From Server Please Wait</p></div>
+            </div>
+        </div>
+
       </div>
+
+     
 </div>

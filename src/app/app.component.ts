@@ -13,15 +13,22 @@ export class AppComponent implements OnInit {
   constructor(private router:Router,private userService:UserService){}
 
   ngOnInit(): void {
-    let arr = localStorage.getItem('users') || '[]';
-    let b = JSON.parse(arr);
-    for(let user of b){
-      if(user.isLogin){
-        this.userService.user = user;
-        this.router.navigate(['home/my-profile']);
-        return;
-      }
+    // let arr = localStorage.getItem('users') || '[]';
+    // let b = JSON.parse(arr);
+    // for(let user of b){
+    //   if(user.isLogin){
+    //     this.userService.user = user;
+    //     this.router.navigate(['home/my-profile']);
+    //     return;
+    //   }
+    // }
+
+    let arr = localStorage.getItem('token');
+    if(arr){
+      this.router.navigate(['home/my-profile']);
+      return;
     }
+
    this.router.navigate(['auth/login']);
   }
   title = 'E-Commerce';

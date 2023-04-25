@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Register } from 'src/app/Interfaces/interfaces.module';
+import { Register, RegisterApi } from 'src/app/Interfaces/interfaces.module';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -36,33 +36,51 @@ export class RegisterComponent implements OnInit {
   isValidName:boolean = true;
 
   register(formData:NgForm){
-    if(this.checkName(formData.value.name) && formData.valid && this.checkUserExist(formData.value.email,formData.value.password) && this.selectedValue){
-      let arr = localStorage.getItem('users') || '[]';
-      let userArr = JSON.parse(arr);
-      let obj:Register={
+    if(this.checkName(formData.value.name) && formData.valid && this.checkUserExist(formData.value.email,formData.value.password)){
+      // let arr = localStorage.getItem('users') || '[]';
+      // let userArr = JSON.parse(arr);
+      // let obj:Register={
+      //   name: formData.value.name,
+      //   email: formData.value.email,
+      //   password: formData.value.password,
+      //   companyName: formData.value.companyName,
+      //   isLogin: false,
+      //   isEmailVerified:false,
+      //   role: this.selectedValue
+      // }
+
+      let myObj:RegisterApi={
         name: formData.value.name,
         email: formData.value.email,
         password: formData.value.password,
-        companyName: formData.value.companyName,
-        isLogin: false,
-        isEmailVerified:false,
-        role: this.selectedValue
+        company: formData.value.companyName
       }
-      userArr.push(obj);
-      localStorage.setItem('users',JSON.stringify(userArr));
-      console.log(obj);
-      this._snackBar.open('Registration Successfull...','X',{duration:2000});
-      this.router.navigate(['auth/login']);
+
+      this.userService.register(myObj).subscribe((res:any)=>{
+        if(res){
+          console.log(res);
+          this._snackBar.open('Registration Successfull...','X',{duration:2000});
+          this.router.navigate(['auth/login']);
+        }
+      }, (err)=>{
+        this._snackBar.open('Please Enter Valid Details User Already Exist...','X',{duration:2000});
+      })
+
+      // userArr.push(obj);
+      // localStorage.setItem('users',JSON.stringify(userArr));
+      // console.log(obj);
+
+      
     }
-    else if(!this.checkUserExist(formData.value.email,formData.value.password)){
-      this._snackBar.open('Please Enter Valid Details User Already Exist...','X',{duration:2000});
-    }
-    else if(!this.selectedValue){
-      this._snackBar.open('Please Select Role...','X',{duration:2000});
-    }
-    else{
-      this._snackBar.open('Enter Valid User Details...','X',{duration:2000});
-    }
+    // else if(!this.checkUserExist(formData.value.email,formData.value.password)){
+     
+    // }
+    // else if(!this.selectedValue){
+    //   this._snackBar.open('Please Select Role...','X',{duration:2000});
+    // }
+    // else{
+    //   this._snackBar.open('Enter Valid User Details...','X',{duration:2000});
+    // }
     //console.log(data);
   }
 

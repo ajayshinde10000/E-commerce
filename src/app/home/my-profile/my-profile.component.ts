@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/Services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { ApiUser } from 'src/app/Interfaces/interfaces.module';
 
 @Component({
   selector: 'app-my-profile',
@@ -11,22 +12,63 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class MyProfileComponent implements OnInit {
 
   constructor(private router:Router,private userService:UserService,private _snackBar: MatSnackBar) {
-    this.name = userService.user.name;
-    this.email = userService.user.email;
-    this.companyName = userService.user.companyName;
-    this.role = userService.user.role;
-    console.log('User Logged In');
+   
    }
 
   ngOnInit(): void {
+
+      this.getUser();
+      // this.name = this.userService.user.name;
+      // this.email = this.userService.user.email;
+      // this.companyName = this.userService.user._org.name;
+      // this.role = this.userService.user.role;
+      console.log('User Logged In');
+      // console.log(this.name);
+      // this.userService.getUser();
+    
   }
+
+  isLoadingData:boolean = true;
+
+  user:ApiUser={
+    id: '',
+    name: '',
+    _org: {
+      id: '',
+      name: '',
+      email: ''
+    },
+    email: '',
+    role: '',
+    isEmailVerified: false,
+    deleted: false,
+    createdAt: undefined,
+    updatedAt: undefined
+  }
+
+
+   async getUser(){
+    await this.userService.getUser().subscribe((res:any)=>{
+      console.log(res);
+      this.user = res;
+      this.isLoadingData = false;
+    });
+  }
+
+   read_cookie(name:any) {
+    var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
+    result && (result = JSON.parse(result[1]));
+    console.log(result);
+    return result;
+   }
+
 
   isEdit:boolean = true;
 
-  name:string;
-  email:string;
-  role:string;
-  companyName:string;
+  name!:string;
+  email!:string;
+  role!:string;
+  companyName!:string;
 
   // logout(){
   //   let arr = localStorage.getItem('users') || '[]';
