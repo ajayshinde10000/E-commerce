@@ -1,27 +1,60 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand">E-Commerce</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" *ngIf="!isLogin" routerLink="auth/login">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" *ngIf="!isLogin" routerLink="auth/register">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" *ngIf="isLogin">My Profile</a>
-            </li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-0 pb-0">
+  <div class="container-fluid mainHeader">
+    <a class="navbar-brand">E-Commerce</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            *ngIf="!isLogin"
+            routerLink="auth/login"
+            >Login</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!isLogin" routerLink="auth/register"
+            >Register</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" (click)="comanyNavShow()" routerLink="setting/company"
+            >Company</a
+          >
+        </li>
 
-            <li class="nav-item" *ngIf="isLogin">
-                <a class="nav-link" (click)="logout()">Logout</a>
-            </li>
-           
-          </ul>
-      </div>
+        <li *ngIf="isLogin">
+          <a class="nav-link" routerLink="setting/users">Users</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" (click)="hide()" routerLink="../home/my-profile">My Profile</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isLogin">
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- <div *ngIf="companyHeader" class="container mt-1 pt-0">
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid d-flex justify-content-end">
+      <a class="navbar-brand btn btn-primary ms-0 me-2" routerLink="setting/company">Company</a>
+      <a class="navbar-brand btn btn-primary ms-0" routerLink="setting/users">Users</a>
     </div>
   </nav>
+</div> -->

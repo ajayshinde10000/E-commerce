@@ -16,7 +16,6 @@ export class MyProfileComponent implements OnInit {
    }
 
   ngOnInit(): void {
-
       this.getUser();
       // this.name = this.userService.user.name;
       // this.email = this.userService.user.email;

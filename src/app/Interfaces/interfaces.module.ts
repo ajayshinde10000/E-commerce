@@ -43,3 +43,9 @@ export interface ApiUser{
     createdAt:any,
     updatedAt:any
 }
+
+
+export interface CompanyDetails{
+    name:string;
+    email:string;
+  }

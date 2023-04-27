@@ -1,0 +1,65 @@
+.createUserBtn{
+    position: relative;
+    right: 0;
+    bottom: 0;
+}
+.table-responsive{
+    overflow-x: hidden;
+}
+.updateDiv{
+    width: 500px;
+    position: absolute;
+    border-top: 1px solid rgba(0, 0, 0, 0.15) ;
+    border-left:1px solid rgba(0, 0, 0, 0.15) ;
+    border-radius: 5px;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* border: 1px solid rgb(105, 104, 104); */
+    padding: 40px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.roleRow{
+    width:130px;
+}
+
+.roleSpan{
+    margin-top: 20px;
+}
+
+.roleRow span{
+    font-size: 14px;
+}
+
+.deleteAlert{
+    position: absolute;
+    top:60px;
+    right: 10%;
+}
+
+.totalSel{
+    width: 100px;
+}
+
+@media screen and (max-width: 500px) {
+    .updateDiv{
+        width: 96vw;
+        border-top: 1px solid rgba(0, 0, 0, 0.15) ;
+        border-left:1px solid rgba(0, 0, 0, 0.15) ;
+        border-radius: 5px;
+        position: absolute;
+        top: 43%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        /* border: 1px solid rgb(105, 104, 104); */
+        padding: 40px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+    .deleteAlert{
+        position: absolute;
+        top:60px;
+        right: 0;
+    }
+    
+}

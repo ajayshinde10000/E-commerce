@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './Services/user.service';
 import { Observable } from 'rxjs';
@@ -10,8 +10,18 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router:Router,private userService:UserService){}
+  constructor(private router:Router,private userService:UserService){
+    
+  }
 
+
+  @ViewChild('page') page!:ElementRef;
+
+  @ViewChildren('page') parent!: QueryList<any>;
+
+ 
+
+  arr = [1,2,3];
   ngOnInit(): void {
     // let arr = localStorage.getItem('users') || '[]';
     // let b = JSON.parse(arr);
@@ -23,6 +33,7 @@ export class AppComponent implements OnInit {
     //   }
     // }
 
+   
     let arr = localStorage.getItem('token');
     if(arr){
       this.router.navigate(['home/my-profile']);
@@ -32,4 +43,15 @@ export class AppComponent implements OnInit {
    this.router.navigate(['auth/login']);
   }
   title = 'E-Commerce';
+
+  update(ind:any){
+    alert(ind)
+  }
+
+  getData(){
+    let arr2 = this.parent.toArray();
+    console.log(arr2);
+  }
+
+ 
 }

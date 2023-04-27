@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
+import { UserService } from '../Services/user.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MatSelectModule} from '@angular/material/select';
   ]
 })
 export class AuthModule { 
-  constructor(){
+  constructor(private ser:UserService){
+    ser.companyHeaderShow.next(false);
     console.log('Auth Module Loaded');
   }
 }

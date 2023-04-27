@@ -14,6 +14,10 @@ export class HeaderComponent implements OnInit {
         userService.userLoginTrue.subscribe((data)=>{
           this.isLogin = data;
         })
+
+        userService.companyHeaderShow.subscribe((data)=>{
+          this.companyHeader = data;
+        })
    }
 
   ngOnInit(): void {
@@ -37,6 +41,22 @@ export class HeaderComponent implements OnInit {
     // localStorage.removeItem('token');
     //localStorage.removeItem('user');
     this.router.navigate(['auth/login']);
+    this.userService.companyHeaderShow.next(false);
+  }
+
+  companyHeader:boolean = false;
+
+  goToComapnyComponent(){
+    this.router.navigate(['home/company']);
+  }
+
+
+  comanyNavShow(){
+    this.userService.companyHeaderShow.next(true);
+  }
+
+  hide(){
+    this.userService.companyHeaderShow.next(false);
   }
 
 }
