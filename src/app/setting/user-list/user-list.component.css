@@ -42,6 +42,14 @@
     width: 100px;
 }
 
+.pagination li{
+    cursor: pointer;
+}
+
+.form-select{
+    cursor: pointer;
+}
+
 @media screen and (max-width: 500px) {
     .updateDiv{
         width: 96vw;
