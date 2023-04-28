@@ -4,7 +4,8 @@
     bottom: 0;
 }
 .table-responsive{
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+    overflow-x: visible;
 }
 .updateDiv{
     width: 500px;
@@ -48,6 +49,34 @@
 
 .form-select{
     cursor: pointer;
+}
+
+.pass{
+    position: relative;
+}
+
+.pass input{
+    position: relative;
+}
+
+
+.pass img{
+    z-index: 2;
+    cursor: pointer;
+    position: absolute;
+    top:7px;
+    right: 15px;
+    width: 25px;
+}
+.targetedBtn a::before{
+    position: absolute;
+    top:0;
+    width: 0;
+    transition: 0s ease-in-out;
+}
+
+.targetedBtn a{
+    background-color: #55acee;
 }
 
 @media screen and (max-width: 500px) {

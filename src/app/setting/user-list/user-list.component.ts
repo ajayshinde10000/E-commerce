@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -17,9 +17,20 @@ export class UserListComponent implements OnInit {
   userId!: string;
   role!: string;
 
+  passVisible:string='password';
+
   constructor(private userService: UserService) {
     this.loadUsers();
-    this.pageChange(1);
+    this.pageChange(0);
+  }
+
+  toggleImg(){
+    if(this.passVisible=='text'){
+      this.passVisible = 'password'
+    }
+    else{
+      this.passVisible = 'text';
+    }
   }
 
   loadUsers() {
@@ -106,6 +117,10 @@ export class UserListComponent implements OnInit {
     this.isCreateStatus = true;
   }
 
+  cancelCreateUser(){
+    this.isCreateStatus = false;
+  }
+
   userCreatedAlert: boolean = false;
 
   createUser() {
@@ -135,6 +150,11 @@ export class UserListComponent implements OnInit {
   updateRoleStatus(data: any) {
     this.userId = data._id;
     this.role = data.role;
+  }
+
+  eidtRoleByDropdown(data:any){
+    console.log(data);
+    this.role=data;
   }
 
   updatedRoleStatus: boolean = false;
@@ -187,6 +207,7 @@ export class UserListComponent implements OnInit {
     this.userService.getUsersByLimit(val).subscribe((data: any) => {
       console.log(data);
       this.limit = val;
+      this.page=1;
       console.log(this.limit);
       //this.totalPages = data.totalPages;
       this.totalPages = Array(data.totalPages).fill(4);
@@ -199,9 +220,12 @@ export class UserListComponent implements OnInit {
   prevDisable: boolean = false;
 
   next() {
+    
     if (this.page < this.totalPages.length) {
       this.page++;
       this.pageChange(this.page);
+      this.targetBtn(this.mydiv.nativeElement,this.page);
+      console.log("From Next",this.page)
       this.nextDisble = false;
     } else {
       this.nextDisble = true;
@@ -213,6 +237,8 @@ export class UserListComponent implements OnInit {
       this.page--;
       this.pageChange(this.page);
       this.prevDisable = false;
+      console.log("From Prev",this.page)
+      this.targetBtn(this.mydiv.nativeElement,this.page);
     } else {
       this.prevDisable = true;
     }
@@ -241,4 +267,31 @@ export class UserListComponent implements OnInit {
     });
     this.userArr = newArr;
   }
+
+  //myEvent:HTMLElement = document.getElementById('pageNode') as HTMLElement;
+  @ViewChild('pageNode', { static: false }) public mydiv!: ElementRef;
+
+  demoData(){
+    this.userService.httpParamsApi().subscribe((data) =>{
+      console.log(data);
+    })
+  }
+
+  targetBtn(event:any,ind:number){
+    console.log(this.mydiv.nativeElement);
+    let data = event.childNodes;
+    for(let i=0;i<data.length-1;i++){
+      if(i==ind-1){
+        event.childNodes[i].classList.add('targetedBtn');
+      }
+      else{
+        event.childNodes[i].classList.remove('targetedBtn');
+      }
+    }
+
+    //console.log(event.srcElement.parentNode);
+      
+    //event.srcElement.classList.add('targetedBtn');
+  }
+
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Register, User, Login, CompanyDetails } from '../Interfaces/interfaces.module';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -207,5 +207,29 @@ export class UserService {
     };
     return this.http.get(url,httpOptions);
   }
+
+
+  httpParamsApi(){
+    let url = `https://shop-api.ngminds.com/users`;
+
+    var pr  = new HttpParams();
+    pr.set('sortBy','email');
+    pr.set('role','user');
+    pr.set('limit','2')
+    pr.set('page','1');
+
+
+    let token = this.tokenService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type':'application/json',
+        'Authorization': `bearer ${token}`
+      }),
+      params: new HttpParams().set('sortBy','email').set('role','user').set('limit','2').set('page','1')
+    };
+    return this.http.get(url,httpOptions);
+  }
+
+ 
 
 }
