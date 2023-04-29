@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
     if(tokenService.getToken()){
       router.navigate(['home/my-profile']);
     }
+    else{
+      router.navigate(['auth/login']);
+    }
   }
 
   ngOnInit(): void {
