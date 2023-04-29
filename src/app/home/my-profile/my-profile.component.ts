@@ -30,7 +30,7 @@ export class MyProfileComponent implements OnInit {
   isLoadingData:boolean = true;
 
   user:ApiUser={
-    id: '',
+    _id: '',
     name: '',
     _org: {
       id: '',
@@ -51,23 +51,17 @@ export class MyProfileComponent implements OnInit {
       console.log(res);
       this.user = res;
       this.isLoadingData = false;
+    },(err)=>{
+      this.router.navigate(['auth/login']);
     });
   }
-
-   read_cookie(name:any) {
-    var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
-    result && (result = JSON.parse(result[1]));
-    console.log(result);
-    return result;
-   }
-
 
   isEdit:boolean = true;
 
   name!:string;
   email!:string;
-  role!:string;
-  companyName!:string;
+  role:any;
+  password!:string;
 
   // logout(){
   //   let arr = localStorage.getItem('users') || '[]';
@@ -83,35 +77,61 @@ export class MyProfileComponent implements OnInit {
   // }
 
   edit(){
+    // this.userService.getUser().subscribe((data:any)=>{
+    //   this.user = data;
+    //   console.log(this.myUser);
+    //   this.name = data.name;
+    //   this.email = data.email;
+    // })
+    this.name = this.user.name;
+    this.email = this.user.email;
     this.isEdit = false;
   }
 
   isRoleValid:boolean = true;
 
   editProfile(){
-    this.role = this.role.trim();
+    // this.role = this.role.trim();
+    // if(this.checkName(this.name) && this.role == 'user' || this.role == 'Admin'){
+    //   let arr = localStorage.getItem('users') || '[]';
+    //   let userArray = JSON.parse(arr);
+    //   for(let user of userArray){
+    //     if(user.email == this.email){
+    //       user.name = this.name;
+    //       user.role = this.role;
+    //       user.companyName = this.companyName;
+    //       this.isEdit = true;
+    //       this.isValidName = false;
+    //       localStorage.setItem('users', JSON.stringify(userArray));
+    //       this._snackBar.open('Profile Updated Successfully','X',{duration:3000})
+    //       return;
+    //     }
+    //   }
+    // }
+    // else{
+    //   this.isRoleValid = false;
+    //   this._snackBar.open('Please Enter Valid Details','X',{duration:3000})
+    // }
 
-    if(this.checkName(this.name) && this.role == 'user' || this.role == 'Admin'){
-      let arr = localStorage.getItem('users') || '[]';
-      let userArray = JSON.parse(arr);
+    let obj = {
+      name:this.name,
+      email:this.email,
+      password:this.password
+    };
 
-      for(let user of userArray){
-        if(user.email == this.email){
-          user.name = this.name;
-          user.role = this.role;
-          user.companyName = this.companyName;
-          this.isEdit = true;
-          this.isValidName = false;
-          localStorage.setItem('users', JSON.stringify(userArray));
-          this._snackBar.open('Profile Updated Successfully','X',{duration:3000})
-          return;
-        }
-      }
-    }
-    else{
-      this.isRoleValid = false;
-      this._snackBar.open('Please Enter Valid Details','X',{duration:3000})
-    }
+    let userId = this.user._id;
+
+    this.userService.updateUserInfo(obj,userId).subscribe((data:any)=>{
+      this.user = data;
+      this.isEdit = true;
+      this.password="";
+    })
+
+  }
+
+  eidtRoleByDropdown(data:any){
+    console.log(data);
+    this.role=data;
   }
 
   isValidName:boolean = false;
@@ -133,6 +153,16 @@ export class MyProfileComponent implements OnInit {
 
 cancelEditProfile(){
   this.isEdit = true;
+}
+passVisible:string = 'password';
+
+toggleImg(){
+  if(this.passVisible == 'password'){
+    this.passVisible = 'text';
+  }
+  else{
+    this.passVisible = 'password';
+  }
 }
 
 }

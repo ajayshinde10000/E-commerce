@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -9,8 +10,15 @@ export class TokenService {
 
   getToken(){
     let token = localStorage.getItem('token');
-    token = token && JSON.parse(token);
-    return token;
+    
+    try{
+      token = token && JSON.parse(token);
+      return token;
+    }catch(err){
+      localStorage.removeItem('token');
+      return false;
+    }
+    //return token;
   }
 
   setToken(token:string){
@@ -19,6 +27,19 @@ export class TokenService {
 
   deleteToken(){
     localStorage.removeItem('token');
+  }
+
+  getHeader(){
+    let token = this.getToken();
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type':'application/json',
+        'Authorization': `bearer ${token}`
+      })
+    };
+
+    return httpOptions;
   }
 
 }
