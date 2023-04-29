@@ -29,7 +29,7 @@ export interface Login{
 }
 
 export interface ApiUser{
-    id: string,
+    _id: string,
     name: string,
     _org:{
       id: string,

@@ -9,23 +9,39 @@
           
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Name</label>
-                <input type="text" class="form-control" [(ngModel)]="name" [disabled]="isEdit">
+                <input type="text" class="form-control" [(ngModel)]="name">
                 <span class="text-danger" *ngIf="isValidName">Please Enter Valid Name</span>
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Email</label>
-                <input type="text" class="form-control" [(ngModel)]="email" [disabled]="true">
+                <input type="text" class="form-control" [(ngModel)]="email">
             </div>
+
             <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Company Name</label>
-                <input type="text" class="form-control" [(ngModel)]="companyName" [disabled]="isEdit">
-            </div>
-            <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Role</label>
-                <input type="text" class="form-control" [(ngModel)]="role" [disabled]="isEdit">
-                <span class="text-danger" *ngIf="!isRoleValid">Role Must Be Either 'user' or 'Admin'</span>
-            </div>
-            <a class="btn btn-primary" (click)="editProfile()">Save Changes</a>
+                <label for="formGroupExampleInput2" class="form-label">Password:</label>
+                <div class="pass">
+                    <img *ngIf="passVisible=='password'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/hide.png"/>
+                    <img *ngIf="passVisible=='text'" (click)="toggleImg()" src="https://img.icons8.com/ios-glyphs/30/null/visible--v1.png"/>
+                    <input
+                      type="{{passVisible}}"
+                      class="form-control"
+                      [(ngModel)]="password"
+                    />
+                </div>
+              </div>
+
+            <!-- <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Password</label>
+                <input type="password" class="form-control" [(ngModel)]="password">
+            </div> -->
+            <!-- <div class="mb-3">
+                <select class="form-select" #editRole (change)="eidtRoleByDropdown(editRole.value)" aria-label="Default select example">
+                    <option selected>Please Select Role</option>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div> -->
+            <a class="btn btn-primary" (click)="editProfile()">Update</a>
             <a class="btn btn-primary ms-3" (click)="cancelEditProfile()">Cancel</a>
         </div>
       </div>

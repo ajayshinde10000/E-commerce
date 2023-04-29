@@ -268,14 +268,7 @@ export class UserListComponent implements OnInit {
     this.userArr = newArr;
   }
 
-  //myEvent:HTMLElement = document.getElementById('pageNode') as HTMLElement;
   @ViewChild('pageNode', { static: false }) public mydiv!: ElementRef;
-
-  demoData(){
-    this.userService.httpParamsApi().subscribe((data) =>{
-      console.log(data);
-    })
-  }
 
   targetBtn(event:any,ind:number){
     console.log(this.mydiv.nativeElement);
@@ -288,10 +281,6 @@ export class UserListComponent implements OnInit {
         event.childNodes[i].classList.remove('targetedBtn');
       }
     }
-
-    //console.log(event.srcElement.parentNode);
-      
-    //event.srcElement.classList.add('targetedBtn');
   }
 
 }

@@ -59,99 +59,109 @@ export class UserService {
     //let t = JSON.parse(localStorage.getItem('token') || '');
     let token = this.tokenService.getToken();
     let url = this.baseUrl+"auth/self";
-       const httpOptions = {
-          headers: new HttpHeaders({ 
-            'Content-Type':'application/json',
-            'Authorization': `bearer ${token}`
-          })
-        };
-        return this.http.get(url,httpOptions)
+
+    let header = this.tokenService.getHeader();
+      //  const httpOptions = {
+      //     headers: new HttpHeaders({ 
+      //       'Content-Type':'application/json',
+      //       'Authorization': `bearer ${token}`
+      //     })
+      //   };
+      return this.http.get(url,header);
   }
 
   //Update Company Information Api  
   updateCompanyInfo(companyData:CompanyDetails){
       let url = this.baseUrl + "users/org";
-      let token = this.tokenService.getToken();
+      //let token = this.tokenService.getToken();
 
-      const httpOptions = {
-        headers: new HttpHeaders({ 
-          'Content-Type':'application/json',
-          'Authorization': `bearer ${token}`
-        })
-      };
-      return this.http.patch(url,companyData,httpOptions)
+      // const httpOptions = {
+      //   headers: new HttpHeaders({ 
+      //     'Content-Type':'application/json',
+      //     'Authorization': `bearer ${token}`
+      //   })
+      // };
+
+      let header = this.tokenService.getHeader();
+      return this.http.patch(url,companyData,header)
   }
 
   //get All Users Api
   getAllUsers(){
-    let token = this.tokenService.getToken();
+    // let token = this.tokenService.getToken();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     'Content-Type':'application/json',
+    //     'Authorization': `bearer ${token}`
+    //   })
+    // };
 
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Content-Type':'application/json',
-        'Authorization': `bearer ${token}`
-      })
-    };
+    let header = this.tokenService.getHeader();
 
     let url = this.baseUrl + "users";
-    return this.http.get(url,httpOptions);
+    return this.http.get(url,header);
   }
 
   //Create User Api
   createUser(data:any){
-    let token = this.tokenService.getToken();
+    // let token = this.tokenService.getToken();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     'Content-Type':'application/json',
+    //     'Authorization': `bearer ${token}`
+    //   })
+    // };
 
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Content-Type':'application/json',
-        'Authorization': `bearer ${token}`
-      })
-    };
+    let header = this.tokenService.getHeader();
 
     let url = this.baseUrl + "users";
-    return this.http.post(url,data,httpOptions)
+    return this.http.post(url,data,header)
   }
 
   //Update User Information Api
   updateUserInfo(data:any,userId:string){
-    let token = this.tokenService.getToken();
-
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Content-Type':'application/json',
-        'Authorization': `bearer ${token}`
-      })
-    };
+    // let token = this.tokenService.getToken();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     'Content-Type':'application/json',
+    //     'Authorization': `bearer ${token}`
+    //   })
+    // };
+    let header = this.tokenService.getHeader();
     console.log(data);
     let url = this.baseUrl + "users/"+userId;
-    return this.http.patch(url,data,httpOptions)
+    return this.http.patch(url,data,header)
   }
 
 
   //update User Role
   updateUserRole(userId:string,userRole:string){
-    let token = this.tokenService.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Content-Type':'application/json',
-        'Authorization': `bearer ${token}`
-      })
-    };
+    // let token = this.tokenService.getToken();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     'Content-Type':'application/json',
+    //     'Authorization': `bearer ${token}`
+    //   })
+    // };
+
+    let header = this.tokenService.getHeader();
     let url = this.baseUrl + "users/role/"+userId;
-    return this.http.patch(url,{role:userRole},httpOptions);
+    return this.http.patch(url,{role:userRole},header);
   }
 
   //Delete User
   deleteUser(userId:string) {
-    let token = this.tokenService.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Content-Type':'application/json',
-        'Authorization': `bearer ${token}`
-      })
-    };
+    // let token = this.tokenService.getToken();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     'Content-Type':'application/json',
+    //     'Authorization': `bearer ${token}`
+    //   })
+    // };
+
+    let header = this.tokenService.getHeader();
     let url =  this.baseUrl+ "users/"+userId;
-    return this.http.delete(url,httpOptions);
+    return this.http.delete(url,header);
   }
   
   //Pagination Api
@@ -160,65 +170,63 @@ export class UserService {
     let url = `https://shop-api.ngminds.com/users?sortBy=${data}`;  
 
    
-    let token = this.tokenService.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Content-Type':'application/json',
-        'Authorization': `bearer ${token}`
-      })
-    };
-    return this.http.get(url,httpOptions);
+    // let token = this.tokenService.getToken();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     'Content-Type':'application/json',
+    //     'Authorization': `bearer ${token}`
+    //   })
+    // };
+    let header = this.tokenService.getHeader();
+    return this.http.get(url,header);
   }
 
   sortWithLimit(data:any,limit:any,page:any){
     let url = `https://shop-api.ngminds.com/users?limit=${limit}&page=${page}&sortBy=${data}`;
-    let token = this.tokenService.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Content-Type':'application/json',
-        'Authorization': `bearer ${token}`
-      })
-    };
-    return this.http.get(url,httpOptions);
+    // let token = this.tokenService.getToken();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     'Content-Type':'application/json',
+    //     'Authorization': `bearer ${token}`
+    //   })
+    // };
+
+    let header = this.tokenService.getHeader();
+    return this.http.get(url,header);
   }
 
   getUsersByLimit(limit:any){
       let url = `https://shop-api.ngminds.com/users?limit=${limit}`;
 
-      let token = this.tokenService.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Content-Type':'application/json',
-        'Authorization': `bearer ${token}`
-      })
-    };
-    return this.http.get(url,httpOptions);
+    //   let token = this.tokenService.getToken();
+    //   const httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     'Content-Type':'application/json',
+    //     'Authorization': `bearer ${token}`
+    //   })
+    // };
+    let header = this.tokenService.getHeader();
+    return this.http.get(url,header);
   }
 
   getUsersByPageAndLimit(limit:any,page:any){
     let url = `https://shop-api.ngminds.com/users?limit=${limit}&page=${page}`;
 
-    let token = this.tokenService.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({ 
-        'Content-Type':'application/json',
-        'Authorization': `bearer ${token}`
-      })
-    };
-    return this.http.get(url,httpOptions);
+    // let token = this.tokenService.getToken();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     'Content-Type':'application/json',
+    //     'Authorization': `bearer ${token}`
+    //   })
+    // };
+    let header = this.tokenService.getHeader();
+    return this.http.get(url,header);
   }
 
 
+  //Api With Sending Params in Http Header
   httpParamsApi(){
     let url = `https://shop-api.ngminds.com/users`;
-
-    var pr  = new HttpParams();
-    pr.set('sortBy','email');
-    pr.set('role','user');
-    pr.set('limit','2')
-    pr.set('page','1');
-
-
     let token = this.tokenService.getToken();
     const httpOptions = {
       headers: new HttpHeaders({ 
